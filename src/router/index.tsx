@@ -1,9 +1,10 @@
 import React from 'react'
 import Home from '../pages/home/home'
 import Login from '../pages/login/login'
-import { RouteObject } from 'react-router-dom'
+import { RouteObject, redirect } from 'react-router-dom'
 import Index1 from '../pages/user/index1'
 import Index2 from '../pages/user/index2'
+import NotFound from '../pages/notfound/notfound'
 
 const routes: RouteObject[] = [
   {
@@ -13,6 +14,9 @@ const routes: RouteObject[] = [
   {
     path: '/user',
     element: <Home/>,
+    loader: () => {
+      return redirect('/user/index1')
+    },
     children: [
       {
         path: 'index1',
@@ -27,6 +31,10 @@ const routes: RouteObject[] = [
   {
     path: '/login',
     element: <Login/>
+  },
+  {
+    path: '*',
+    element: <NotFound/>
   }
 ]
 
