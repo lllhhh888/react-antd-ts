@@ -4,6 +4,8 @@ import { Menu } from 'antd'
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons'
 import { RootState } from '../../store'
 import { useSelector } from 'react-redux'
+import { MenuClickEventHandler } from 'rc-menu/lib/interface'
+import { useNavigate } from 'react-router-dom'
 type MenuItem = Required<MenuProps>['items'][number]
 
 function getItem (label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[], type?: 'group'): MenuItem {
@@ -40,6 +42,8 @@ const items: MenuItem[] = [
 const rootSubmenuKeys = ['sub1', 'sub2', 'sub4']
 
 const NarBar: FC = () => {
+  const navigate = useNavigate()
+
   const [openKeys, setOpenKeys] = useState(['sub1'])
 
   const collapsed = useSelector((state: RootState) => state.app.collapsed)
@@ -53,11 +57,17 @@ const NarBar: FC = () => {
       setOpenKeys(latestOpenKey ? [latestOpenKey] : [])
     }
   }
+
+  const onMenuClick: MenuClickEventHandler = (menuInfo) => {
+    navigate('/user/index1')
+  }
+
   return (
     <Menu
       mode="inline"
       openKeys={openKeys}
       onOpenChange={onOpenChange}
+      onClick={onMenuClick}
       items={items}
     />
   )

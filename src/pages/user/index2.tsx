@@ -1,9 +1,10 @@
 
 import React from 'react'
+import './index2.css'
 
 const Index2: React.FC = () => {
   return (
-        <div>index222</div>
+        <div className='ga'>index222</div>
   )
 }
 
