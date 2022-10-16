@@ -22,6 +22,7 @@
     "project": "./"
   },
   "include": [
-    "src"
+    "src",
+    "types.css.d.ts"
   ]
 }

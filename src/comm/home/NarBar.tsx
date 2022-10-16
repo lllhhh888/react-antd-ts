@@ -59,7 +59,7 @@ const NarBar: FC = () => {
   }
 
   const onMenuClick: MenuClickEventHandler = (menuInfo) => {
-    navigate('/user/index1')
+    navigate('/user/index2')
   }
 
   return (

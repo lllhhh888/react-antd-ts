@@ -1,10 +1,11 @@
 
 import React from 'react'
-import './index2.css'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import indexcss from './index2.module.css'
 
 const Index2: React.FC = () => {
   return (
-        <div className='ga'>index222</div>
+        <div className={indexcss.ga}>index222</div>
   )
 }
 
