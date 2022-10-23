@@ -1,11 +1,12 @@
 import React, { FC, useState } from 'react'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons'
 import { RootState } from '../../store'
 import { useSelector } from 'react-redux'
 import { MenuClickEventHandler } from 'rc-menu/lib/interface'
 import { useNavigate } from 'react-router-dom'
+import routes from '../../router/index'
+import style from './navbar.module.css'
 type MenuItem = Required<MenuProps>['items'][number]
 
 function getItem (label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[], type?: 'group'): MenuItem {
@@ -18,31 +19,26 @@ function getItem (label: React.ReactNode, key: React.Key, icon?: React.ReactNode
   }
 }
 
-const items: MenuItem[] = [
-  getItem('Navigation One', 'sub1', <MailOutlined />, [
-    getItem('Option 1', '1'),
-    getItem('Option 2', '2'),
-    getItem('Option 3', '3'),
-    getItem('Option 4', '4')
-  ]),
-  getItem('Navigation Two', 'sub2', <AppstoreOutlined />, [
-    getItem('Option 5', '5'),
-    getItem('Option 6', '6'),
-    getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')])
-  ]),
-  getItem('Navigation Three', 'sub4', <SettingOutlined />, [
-    getItem('Option 9', '9'),
-    getItem('Option 10', '10'),
-    getItem('Option 11', '11'),
-    getItem('Option 12', '12')
-  ])
-]
+const filterRoutes = (r: Routes[]): MenuItem[] => {
+  const NOINDULE = ['/login', '*', '/']
 
-// submenu keys of first level
+  const menu: MenuItem[] = r.filter(item => !NOINDULE.includes(item.path)).map(item => {
+    let children: MenuItem[] = []
+    if (item.children !== undefined && item.children.length > 0) {
+      children = filterRoutes(item.children)
+      return getItem(item.title, item.key !== undefined ? item.key : '', item.icon, children)
+    }
+    return getItem(item.title, item.key !== undefined ? item.key : '', item.icon)
+  })
+  return menu
+}
+
 const rootSubmenuKeys = ['sub1', 'sub2', 'sub4']
 
 const NarBar: FC = () => {
   const navigate = useNavigate()
+
+  const items = filterRoutes(routes)
 
   const [openKeys, setOpenKeys] = useState(['sub1'])
 
@@ -59,11 +55,12 @@ const NarBar: FC = () => {
   }
 
   const onMenuClick: MenuClickEventHandler = (menuInfo) => {
-    navigate('/user/index2')
+    navigate(menuInfo.key)
   }
 
   return (
     <Menu
+      className={style.menu}
       mode="inline"
       openKeys={openKeys}
       onOpenChange={onOpenChange}

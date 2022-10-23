@@ -1,22 +1,16 @@
 import React from 'react'
 import Home from '../pages/home/home'
 import Login from '../pages/login/login'
-import { RouteObject } from 'react-router-dom'
 import NotFound from '../pages/notfound/notfound'
-import Authorize from './Authorize'
-import { NprogressComm } from '../comm/nprogress/NprogressComm'
+import user from './modules/user'
 
-const routes: RouteObject[] = [
-
+const routes: Routes[] = [
   {
+    title: '首页',
     path: '/',
-    element: <NprogressComm>
-      <Authorize>
-        <Home/>
-      </Authorize>
-    </NprogressComm>
+    element: <Home/>
   },
-
+  user,
   {
     path: '/login',
     element: <Login/>
