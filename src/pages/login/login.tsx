@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { login } from '../../api/user'
+import { login } from 'api/user'
 
 interface LoginProps {
   name?: string
