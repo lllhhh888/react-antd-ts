@@ -1,3 +1,4 @@
+import Test from 'pages/test/test'
 import React from 'react'
 import Home from '../pages/home/home'
 import Login from '../pages/login/login'
@@ -9,6 +10,10 @@ const routes: Routes[] = [
     title: '首页',
     path: '/',
     element: <Home/>
+  },
+  {
+    path: '/test',
+    element: <Test/>
   },
   user,
   {
