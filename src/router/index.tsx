@@ -1,4 +1,5 @@
-import Test from 'pages/test/test'
+// import Test from 'pages/test/test'
+import Test2 from 'pages/test2/test2'
 import React from 'react'
 import Home from '../pages/home/home'
 import Login from '../pages/login/login'
@@ -11,9 +12,13 @@ const routes: Routes[] = [
     path: '/',
     element: <Home/>
   },
+  // {
+  //   path: '/test',
+  //   element: <Test/>
+  // },
   {
-    path: '/test',
-    element: <Test/>
+    path: '/test2',
+    element: <Test2/>
   },
   user,
   {
