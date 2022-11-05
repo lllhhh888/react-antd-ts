@@ -1,8 +1,6 @@
 import React, { FC, useState } from 'react'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
-import { RootState } from '../../store'
-import { useSelector } from 'react-redux'
 import { MenuClickEventHandler } from 'rc-menu/lib/interface'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../router/index'
@@ -22,7 +20,7 @@ function getItem (label: React.ReactNode, key: React.Key, icon?: React.ReactNode
 const filterRoutes = (r: Routes[]): MenuItem[] => {
   const NOINDULE = ['/login', '*', '/']
 
-  const menu: MenuItem[] = r.filter(item => !NOINDULE.includes(item.path)).map(item => {
+  const menu: MenuItem[] = r.filter(item => !NOINDULE.includes(item.path) && !(item.hidden === true)).map(item => {
     let children: MenuItem[] = []
     if (item.children !== undefined && item.children.length > 0) {
       children = filterRoutes(item.children)
@@ -42,8 +40,6 @@ const NarBar: FC = () => {
 
   const [openKeys, setOpenKeys] = useState(['sub1'])
 
-  const collapsed = useSelector((state: RootState) => state.app.collapsed)
-  console.log(collapsed)
   const onOpenChange: MenuProps['onOpenChange'] = keys => {
     const latestOpenKey = keys.find(key => !openKeys.includes(key))
     if (!rootSubmenuKeys.includes(latestOpenKey as string)) {

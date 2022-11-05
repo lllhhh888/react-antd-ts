@@ -1,11 +1,11 @@
-
 import React from 'react'
 import './App.css'
 import { createHashRouter, RouteObject, RouterProvider } from 'react-router-dom'
 import routes from './router/index'
 import Authorize from './router/Authorize'
-import { NprogressComm } from './comm/nprogress/NprogressComm'
+import { NprogressComm } from 'components/nprogress/NprogressComm'
 import 'nprogress/nprogress.css'
+import './assets/scss/comn.scss'
 
 function App (): any {
   const router = createHashRouter(formatRoutes(routes))

@@ -1,0 +1,17 @@
+
+.login-container{
+    width: 100vw;
+    height: 100vh;
+    background: url('../../assets/images/login-bg.jpg');
+    background-position: center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .login-box{
+        width: 400px;
+        height: 260px;
+        background: #fff;
+        padding: 0px 30px;
+    }
+}

@@ -1,0 +1,50 @@
+
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+
+.mt-10{
+    margin-top: 10;
+}
+.mt-15{
+    margin-top: 15px;
+}
+.mt-20{
+    margin-top: 20px;
+}
+
+.mb-10{
+    margin-bottom: 10;
+}
+.mb-15{
+    margin-bottom: 15px;
+}
+.mb-20{
+    margin-bottom: 20px;
+}
+.mr-10{
+    margin-right: 10px;
+}
+.mr-15{
+    margin-right: 15px;
+}
+.mr-20{
+    margin-right: 20px;
+}
+.ml-10{
+    margin-left: 10;
+}
+.ml-15{
+    margin-left: 15px;
+}
+.ml-20{
+    margin-left: 20px;
+}
+
+
+.ant-spin-nested-loading > div > .ant-spin{
+    max-height: none;
+}

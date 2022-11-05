@@ -7,7 +7,6 @@ interface AuthenticationProps {
 }
 
 const Authentication: any = ({ children }: AuthenticationProps) => {
-  console.log(children)
   const userInfo = getUserInfo()
   return (
     <Fragment>
