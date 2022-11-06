@@ -1,10 +1,13 @@
 import React, { FC, useState } from 'react'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
-import { MenuClickEventHandler } from 'rc-menu/lib/interface'
+import { MenuInfo } from 'rc-menu/lib/interface'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../router/index'
 import style from './navbar.module.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { setMenuTab, setMenuActive } from 'store/modules/app'
+import { RootState } from 'store'
 type MenuItem = Required<MenuProps>['items'][number]
 
 function getItem (label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[], type?: 'group'): MenuItem {
@@ -31,16 +34,20 @@ const filterRoutes = (r: Routes[]): MenuItem[] => {
   return menu
 }
 
-const rootSubmenuKeys = ['sub1', 'sub2', 'sub4']
+const rootSubmenuKeys = ['sub1']
 
 const NarBar: FC = () => {
   const navigate = useNavigate()
 
   const items = filterRoutes(routes)
 
-  const [openKeys, setOpenKeys] = useState(['sub1'])
+  const menuActive = useSelector((state: RootState) => state.app.menuActive)
+  const dispatch = useDispatch()
+
+  const [openKeys, setOpenKeys] = useState([''])
 
   const onOpenChange: MenuProps['onOpenChange'] = keys => {
+    console.log(keys)
     const latestOpenKey = keys.find(key => !openKeys.includes(key))
     if (!rootSubmenuKeys.includes(latestOpenKey as string)) {
       setOpenKeys(keys)
@@ -50,7 +57,10 @@ const NarBar: FC = () => {
     }
   }
 
-  const onMenuClick: MenuClickEventHandler = (menuInfo) => {
+  const onMenuClick = (menuInfo: MenuInfo): void => {
+    const ele = menuInfo.domEvent.target as HTMLElement
+    dispatch(setMenuTab({ title: ele.innerText, path: menuInfo.key }))
+    dispatch(setMenuActive(menuInfo.key))
     navigate(menuInfo.key)
   }
 
@@ -59,6 +69,7 @@ const NarBar: FC = () => {
       className={style.menu}
       mode="inline"
       openKeys={openKeys}
+      defaultSelectedKeys={[menuActive]}
       onOpenChange={onOpenChange}
       onClick={onMenuClick}
       items={items}

@@ -4,6 +4,7 @@ import React from 'react'
 import Home from '../pages/home/home'
 import Login from '../pages/login/login'
 import NotFound from '../pages/notfound/notfound'
+import sysettings from './modules/sysettings'
 import user from './modules/user'
 
 const routes: Routes[] = [
@@ -12,6 +13,7 @@ const routes: Routes[] = [
     path: '/',
     auth: true,
     element: <Home/>
+
   },
   {
     path: '/test',
@@ -24,6 +26,7 @@ const routes: Routes[] = [
     element: <Test2/>
   },
   user,
+  sysettings,
   {
     path: '/login',
     element: <Login/>

@@ -5,7 +5,6 @@ import { RootState } from 'store'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCollapsed } from 'store/modules/app'
 import { useNavigate } from 'react-router-dom'
-
 import {
   UserOutlined,
   MenuFoldOutlined,

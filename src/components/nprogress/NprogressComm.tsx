@@ -1,5 +1,6 @@
 import React, { Suspense, Fragment, ReactNode } from 'react'
 import nprogress from 'nprogress'
+
 export const SusFallBack = (): ReactNode => {
   nprogress.start()
   React.useEffect(() => {
